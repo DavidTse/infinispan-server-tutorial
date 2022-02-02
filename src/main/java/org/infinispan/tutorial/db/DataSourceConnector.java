@@ -29,6 +29,7 @@ public class DataSourceConnector {
     // Step 1 - Connect to Infinispan
     public void connect() {
         System.out.println("---- Connect to Infinispan ----");
+        /*
         ConfigurationBuilder builder = new ConfigurationBuilder();
 
         // Hot Rod URI
@@ -56,6 +57,8 @@ public class DataSourceConnector {
 
         // Connect to the server
         remoteCacheManager = new RemoteCacheManager(builder.build());
+        */
+        remoteCacheManager = new RemoteCacheManager();
     }
 
     public void health() {
