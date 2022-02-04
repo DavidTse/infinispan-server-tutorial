@@ -30,7 +30,7 @@ public class TemperatureMonitor {
          if(event.getKey().equals(location)) {
             cache.getAsync(location)
                   .whenComplete((temperature, ex) ->
-                  System.out.printf(">> Location %s Temperature %s", location, temperature));
+                  System.out.printf(">> Location %s Temperature %s%n", location, temperature));
          }
       }
    }

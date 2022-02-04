@@ -1,0 +1,4 @@
+<distributed-cache name="tx-cache" remote-timeout="17500" statistics="true">
+  <locking isolation="REPEATABLE_READ"/>
+  <transaction mode="NON_XA" locking="PESSIMISTIC"/>
+</distributed-cache>

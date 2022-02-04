@@ -6,9 +6,11 @@ import org.infinispan.client.hotrod.configuration.ClientIntelligence;
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
 import org.infinispan.tutorial.data.LocationWeather;
 
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Objects;
+import java.util.Properties;
 
 /**
  * This class connects to Infinispan and gets or creates two caches in the server
@@ -51,14 +53,24 @@ public class DataSourceConnector {
         // Define two caches that should be created in the server if they not exist
         builder.remoteCache("temperature").configurationURI(temperatureCacheConfig);
         builder.remoteCache("weather").configurationURI(weatherCacheConfig);
+        */
+        Properties prop = new Properties();
+        try {
+            InputStream stream = DataSourceConnector.class.getResourceAsStream("/hotrod-client.properties");
 
+            prop.load(stream);
+            stream.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        ConfigurationBuilder builder = new ConfigurationBuilder();
+        builder.withProperties(prop);
         // Define the schema on the client
         builder.addContextInitializer(new LocationWeatherSchemaImpl());
 
         // Connect to the server
         remoteCacheManager = new RemoteCacheManager(builder.build());
-        */
-        remoteCacheManager = new RemoteCacheManager();
     }
 
     public void health() {

@@ -15,14 +15,17 @@ public class WeatherFinderApp extends App {
         WeatherSearch weatherQueryService = new WeatherSearch(admin);
 
         // Step Query 1: Find by country
+        System.out.println("Step Query 1: Find by country");
         System.out.printf("%s: %s \n", "Spain", weatherQueryService.findByCountry("Spain"));
 
         // Step Query 2:  Find by condition
+        System.out.println("Step Query 2:  Find by condition");
         for(WeatherCondition condition: WeatherCondition.values()) {
             System.out.printf("%s: %s \n", condition.name(), weatherQueryService.findByCondition(condition));
         }
 
         // Step Query 3: Find by condition continuously
+        System.out.println("Step Query 3: Find by condition continuously");
         weatherQueryService.findWeatherByConditionContinuously(WeatherCondition.SUNNY);
 
         // Wait until quit
